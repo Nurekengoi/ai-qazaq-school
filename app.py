@@ -24,6 +24,29 @@ try:
 except:
     PLOTLY_AVAILABLE = False
 
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return """
+    <h2>Білім беру платформасы</h2>
+    <a href='/student'>Оқушы</a><br><br>
+    <a href='/teacher'>Мұғалім</a>
+    """
+
+@app.route("/student")
+def student():
+    return "<h3>Оқушы беті</h3>"
+
+@app.route("/teacher")
+def teacher():
+    return "<h3>Мұғалім беті</h3>"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+    
 # ============ ДЕРЕКҚОР БАЗАСЫ ============
 def init_db():
     """Дерекқорды бастапқы жасау"""
@@ -3494,4 +3517,5 @@ def show_teacher_dashboard():
         show_ai_tools()
 
 if __name__ == "__main__":
+
     main()
